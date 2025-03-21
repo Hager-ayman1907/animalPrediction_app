@@ -15,8 +15,6 @@ vectorizer = pickle.load(open("vectorizer.pkl", 'rb'))
 def animal_prediction(input_data):
     # دمج البيانات في نص واحد
     new_combined = ' '.join(input_data)
-    
-    # تحويل النص لـ TF-IDF vector باستخدام نفس الـ vectorizer
     new_transformed = vectorizer.transform([new_combined])
 
     # التأكد من أن عدد الميزات متطابق
@@ -25,7 +23,7 @@ def animal_prediction(input_data):
 
     # التنبؤ بالفئة
     prediction = loaded_model.predict(new_transformed)
-    return prediction[0]
+    return prediction
 
 
 # Function to render the initial cube animation with 6 cubes
@@ -215,22 +213,24 @@ def main():
         with st.spinner("Predicting..."):
             time.sleep(2)
 
-        result = animal_prediction([Breed, Age, Size, Behavior])
-        if result == 'cat':
-            adoption = "The animal is a Cat"
-            img = Image.open("cat.jpg")
-        elif result == 'bird':
-            adoption = "The animal is a Bird"
-            img = Image.open("Bird.png")
-        elif result == 'hamster':
-            adoption = "The animal is a Hamster"
-            img = Image.open("hamester.png")
+        prediction = animal_prediction([Breed, Age, Size, Behavior])
+        predicted_animal = prediction[0] 
+        animal_type = predicted_animal.split('(')[0]
 
-        elif result == 'dog':
-            adoption = "The animal is a Dog"
+        if animal_type.lower() == 'cat':
+            adoption = f"The animal is a Cat with name {predicted_animal}"
+            img = Image.open("cat.jpg")
+        elif animal_type.lower() == 'bird':
+            adoption =f"The animal is a Bird with name {predicted_animal}"
+            img = Image.open("Bird.png")
+        elif animal_type.lower() == 'hamster':
+            adoption =  f"The animal is a Hamester with name {predicted_animal}"
+            img = Image.open("hamester.png")
+        elif animal_type.lower() == 'dog':
+            adoption =  f"The animal is a Dog with name {predicted_animal}"
             img = Image.open("dog.jpg")
         else:
-            adoption = "Unknown animal"
+            adoption = f"Unknown animal: {predicted_animal}"
         st.success(adoption)
         st.image(img, caption='Predicted Animal')
         # عرض انيمشن النتيجة
