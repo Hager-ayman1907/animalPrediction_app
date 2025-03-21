@@ -2,15 +2,21 @@ import numpy as np
 import pickle
 
 ## loading the saved model
-loaded_model = pickle.load(open("C:/Users/Hagar/coursePython/Exercises with me & Youtube/animalPrediction.csv", 'rb'))  
+loaded_model = pickle.load(open("animalPrediction.csv", 'rb'))  
 
 
-x_new = ["pomeranian", "4", "small", "playful"]
-new_combined = ' '.join(x_new)
-new_transformed = vectorizer.transform([new_combined])
+## creating a function for prediction
+def animal_prediction(input_data):
+    # دمج البيانات في نص واحد
+    new_combined = ' '.join(input_data)
+    
+    # تحويل النص لـ TF-IDF vector باستخدام نفس الـ vectorizer
+    new_transformed = vectorizer.transform([new_combined])
+    
+    # التنبؤ بالفئة
+    prediction = loaded_model.predict(new_transformed)
+    return prediction[0]
 
-prediction = model.predict(new_transformed)
-print("Prediction:", prediction[0])
 
 if prediction[0] == 'cat':
     print("The animal is a Cat")
