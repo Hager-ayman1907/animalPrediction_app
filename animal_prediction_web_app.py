@@ -9,7 +9,7 @@ from PIL import Image
 
 ## loading the saved model and vectorizer
 loaded_model = pickle.load(open("animalPrediction.csv", 'rb'))
-vectorizer = pickle.load(open("C:/Users/Hagar/coursePython/Exercises with me & Youtube/vectorizer.pkl", 'rb'))
+vectorizer = pickle.load(open("vectorizer.pkl", 'rb'))
 
 ## creating a function for prediction
 def animal_prediction(input_data):
