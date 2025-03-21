@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 from PIL import Image
 
 ## loading the saved model and vectorizer
-loaded_model = pickle.load(open("C:/Users/Hagar/coursePython/Exercises with me & Youtube/animalPrediction.csv", 'rb'))
+loaded_model = pickle.load(open("animalPrediction.csv", 'rb'))
 vectorizer = pickle.load(open("C:/Users/Hagar/coursePython/Exercises with me & Youtube/vectorizer.pkl", 'rb'))
 
 ## creating a function for prediction
