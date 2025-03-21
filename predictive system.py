@@ -7,6 +7,8 @@ This is a temporary script file.
 import numpy as np
 import pickle
 
+
+@st.cashe_data
 ## loading the saved model
 loaded_model = pickle.load(open("C:/Users/Hagar/coursePython/Exercises with me & Youtube/trained_model.csv", 'rb'))  
 
