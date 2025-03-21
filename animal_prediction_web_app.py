@@ -13,16 +13,17 @@ vectorizer = pickle.load(open("vectorizer.pkl", 'rb'))
 
 ## creating a function for prediction
 def animal_prediction(input_data):
-    # دمج البيانات في نص واحد
-    new_combined = ' '.join(input_data)
-    
-    # تحويل النص لـ TF-IDF vector باستخدام نفس الـ vectorizer
-    new_transformed = vectorizer.transform([new_combined])
-    
-    # التنبؤ بالفئة
-    prediction = loaded_model.predict(new_transformed)
-    return prediction[0]
+    # تحويل البيانات المدخلة
+    new_data = [input_data]  # تأكد من أن البيانات في شكل مصفوفة ثنائية الأبعاد
+    new_transformed = vectorizer.transform(new_data)
 
+    # طباعة شكل البيانات وعدد الميزات المتوقعة
+    print("Shape of new_transformed:", new_transformed.shape)
+    print("Number of features expected by model:", loaded_model.n_features_in_)
+
+    # التنبؤ باستخدام النموذج
+    prediction = loaded_model.predict(new_transformed)
+    return prediction
 
 # Function to render the initial cube animation with 6 cubes
 def render_js_animation():
