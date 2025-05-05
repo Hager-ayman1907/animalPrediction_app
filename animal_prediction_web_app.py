@@ -169,7 +169,7 @@ def main():
     """
     <style>
     .stApp {
-        background-color: #E6F0FF;  
+        background-color: #FFB6B9;  
          color: #333333;
     }
     </style>
@@ -197,8 +197,8 @@ def main():
             """
              <style>
             div.stButton > button:first-child {
-            background-color: #ffdf8d;  
-            color: #00000; 
+            background-color: #5D4037;  
+            color: #ffffff; 
             padding: 10px 20px;  
             font-size: 16px; 
             }
@@ -231,7 +231,13 @@ def main():
             img = Image.open("dog.jpg")
         else:
             adoption = f"Unknown animal: {predicted_animal}"
-        st.success(adoption)
+        st.warning(adoption)
+        # st.markdown(adoption, 
+        #            """
+        #             <div style="background-color: #F7BA57;">
+        #             </div>
+        #               """,   unsafe_allow_html=True
+        #             )       
         st.image(img, caption='Predicted Animal')
         # عرض انيمشن النتيجة
         st.header("Prediction Result")
