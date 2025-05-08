@@ -219,16 +219,18 @@ def main():
 
         if animal_type.lower() == 'cat':
             adoption = f"The animal is a Cat with name {predicted_animal}"
-            img = Image.open("cat.jpg")
+            img = Image.open("cat.png")
+
         elif animal_type.lower() == 'bird':
             adoption =f"The animal is a Bird with name {predicted_animal}"
-            img = Image.open("Bird.png")
+            img = Image.open("birds.png")
         elif animal_type.lower() == 'hamster':
             adoption =  f"The animal is a Hamester with name {predicted_animal}"
-            img = Image.open("hamester.png")
+            img = Image.open("far.png")
+
         elif animal_type.lower() == 'dog':
             adoption =  f"The animal is a Dog with name {predicted_animal}"
-            img = Image.open("dog.jpg")
+            img = Image.open("dog.png")
         else:
             adoption = f"Unknown animal: {predicted_animal}"
         st.warning(adoption)
